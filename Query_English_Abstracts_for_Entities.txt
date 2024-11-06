@@ -1,0 +1,19 @@
+SELECT ?s ?o
+WHERE {
+?s dbo:abstract ?o .
+FILTER (langMatches(lang(?o),"en")) .
+FILTER ( ?s in (
+<http://dbpedia.org/resource/Steve_Mac>,
+<http://dbpedia.org/resource/Steve_Lillywhite>,
+<http://dbpedia.org/resource/Steve_Aoki>,
+<http://dbpedia.org/resource/New_York_(state)>,
+<http://dbpedia.org/resource/Steve_Ditko>,
+<http://dbpedia.org/resource/Steve_Wariner>,
+<http://dbpedia.org/resource/Steve_Earle>,
+<http://dbpedia.org/resource/Steve_Robson>,
+<http://dbpedia.org/resource/Steve_Vai>,
+<http://dbpedia.org/resource/Steve_Kipner>,
+<http://dbpedia.org/resource/Steve_Jobs>
+) )
+
+}

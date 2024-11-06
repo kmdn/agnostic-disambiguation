@@ -1,0 +1,2 @@
+Requirement already satisfied: jinja2 in c:\users\wf7467\anaconda3\lib\site-packages (2.11.2)
+Requirement already satisfied: MarkupSafe>=0.23 in c:\users\wf7467\anaconda3\lib\site-packages (from jinja2) (1.1.1)
