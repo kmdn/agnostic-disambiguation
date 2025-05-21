@@ -1,0 +1,103 @@
+Prompt for Generating Multiple New Mentions & Entities
+Task:
+
+Given an input text with entity mentions, generate 5 distinct modified versions of the text, each with:
+
+    New mentions replacing the original mentions.
+
+    Valid Wikipedia IDs for each new mention.
+
+    Semantic coherence (new mentions fit the context and work together logically).
+
+Input:
+
+    A text snippet with entity mentions.
+
+    A list of mentions to replace (with Wikipedia IDs if available).
+
+Output:
+
+A JSON list of 5 alternatives, each adhering to the original structure. Each alternative must:
+
+    Replace all original mentions with new ones.
+
+    Include unique combinations of mentions/entities across alternatives.
+	
+Output Requirements:
+
+    Placeholder-ized Text: Replace each mention in input_text with {0}, {1}, etc., in order of occurrence.
+
+    Replacements: For each alternative, provide:
+
+        entities: Array of {new: "Replacement", wiki: "Wikipedia_ID"} (aligned with mentions order).
+
+    Constraints:
+
+        All new mentions must fit the original context.
+
+        All wiki IDs must exist on Wikipedia.
+
+        Handle duplicate mentions.
+
+Output Format (JSON):
+json
+
+{
+  "input_text": "Text with {0}, {1} and so on.", 
+  "mentions": ["Mention1", "Mention2", ...],
+  "replacements": [
+    {
+      "entities": [
+        {"new": "Replacement1", "wiki": "Wiki_ID1"},
+        {"new": "Replacement2", "wiki": "Wiki_ID2"}
+		// as many as there are mentions
+      ]
+    }
+    // ... N-1 more alternatives
+  ]
+}
+
+Additional Guidelines:
+
+    Diversity: Ensure the 5 alternatives cover meaningfully different entities (e.g., different cities, agencies, brands or similar).
+
+    Naturalness: New mentions should sound natural, plausible and coherent in the text.
+
+    Wikipedia Validation: All wikipedia_id fields must link to existing pages.
+
+    Consistency: Within each alternative, new mentions should not contradict each other (e.g., "FBI" and "Tokyo" is fine; "FBI" and "Medieval Knights" is not).
+
+Example Input:
+text
+
+Original Text: "Samsung released a new phone in Seoul."  
+Mentions: ["Samsung", "Seoul"]  
+Wikipedia IDs: ["Samsung", "Seoul"]  
+
+Example Output:
+json
+
+{
+  "modified_text": "{0} launched a new smartphone in {1}.",
+  "mentions": ["Samsung", "Seoul"],
+  "replacements": [
+    {
+      "entities": [
+        {"new": "Apple", "wiki": "Apple_Inc."},
+        {"new": "Cupertino", "wiki": "Cupertino,_California"},
+      ]
+    },
+    {
+      "entities": [
+        {"new": "Nokia", "wiki": "Nokia"},
+        {"new": "Helsinki", "wiki": "Helsinki"},
+      ]
+    },
+    // ... more alternatives
+  ]
+}
+
+
+Actual input:
+text
+
